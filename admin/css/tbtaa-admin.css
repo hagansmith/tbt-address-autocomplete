@@ -1,0 +1,18 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+ #tbtaa_submit_admin {
+    margin-top: 2rem;
+ }
+
+
+th {
+    text-align: left;
+    vertical-align: top;
+}
+
+td {
+    padding-bottom: 2rem;
+}
