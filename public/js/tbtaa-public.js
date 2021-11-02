@@ -15,7 +15,6 @@
 			}, false);
 			autocompleteForms[this.name] = autocomplete;
 		});
-		console.log(autocompleteForms);
 	}
 
 	function fillInAddress() {
