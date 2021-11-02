@@ -6,7 +6,6 @@
 	function tbtaaSetAutocompleteFields(){
 		$(tbtaa_fields).each(function(){							  
 			var autocomplete = new google.maps.places.Autocomplete(this, {
-				componentRestrictions: { country: ["us", "ca"] },
 				fields: ["address_components"], 
 				});
 			autocomplete.input = this.id;
