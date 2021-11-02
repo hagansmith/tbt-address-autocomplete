@@ -30,6 +30,7 @@ class Tbtaa_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		add_option('tbtaa_autocomplete_is_enabled', '0');
 		add_option('tbtaa_use_in_woo', '0');
 		add_option('tbtaa_google_api_key', '');
 		add_option('tbtaa_target_class', '');

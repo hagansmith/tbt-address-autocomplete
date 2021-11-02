@@ -72,7 +72,13 @@ class Tbtaa_Public {
 	 */
 	public function enqueue_scripts() {
 
+		$autocomplete_is_enabled = get_option('tbtaa_autocomplete_is_enabled');
 		$google_api_key = get_option('tbtaa_google_api_key');
+
+		if ( empty($autocomplete_is_enabled) || empty($google_api_key) ) {
+			return;
+		}
+
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tbtaa-public.js', array( 'jquery' ), $this->version );
 		wp_enqueue_script( 'googleMaps', "https://maps.googleapis.com/maps/api/js?key=".(!empty($google_api_key) ? $google_api_key : '')."&libraries=places&channel=GMPSB_addressselection_v1_cAC", false, true);
 	}

@@ -15,13 +15,16 @@ function tbtaa_address_autocomplete_settings(){
 	if(isset($_POST['tbtaa_settings'])){
 		
 		update_option('tbtaa_use_in_woo', '0');
-
+		update_option('tbtaa_autocomplete_is_enabled', '0');
+		
 		foreach ($_POST as $key=>$value) {
 
 			if ( $key === 'tbtaa_settings' ) {
 				continue;
 
-			} elseif ( $key === 'tbtaa_google_api_key' ||  $key === 'tbtaa_use_in_woo') {
+			} elseif ( $key === 'tbtaa_google_api_key' || 
+					   $key === 'tbtaa_use_in_woo'||
+					   $key === 'tbtaa_autocomplete_is_enabled' ) {
 				update_option($key, esc_attr(str_replace(' ','', $value)));	
 				continue;
 
@@ -74,7 +77,7 @@ function tbtaa_address_autocomplete_settings(){
 				<tr>
 					<th scope="row">Woo Commerce</th>
 					<td><input type="checkbox" id="tbtaa_use_in_woo" name="tbtaa_use_in_woo" value="use_in_woo" <?php echo get_option('tbtaa_use_in_woo') === '0' ? '' : 'checked' ?> >
-						<label for="tbtaa_use_in_woo">Use Autocomplete in WooCommerce Address Fields</label>
+						<label for="tbtaa_use_in_woo">Use Autocomplete in WooCommerce Billing and Shipping Address Fields</label>
 					</td>
 				</tr>
 				<?php } ?>
@@ -90,22 +93,27 @@ function tbtaa_address_autocomplete_settings(){
 				<tr>
     		        <th scope="row"><label for="tbtaa_target_id">Field ID(s)</label></th> 
             		<td><textarea name="tbtaa_target_id" class="large-text code" id="tbtaa_target_id"><?php echo str_replace('#', '',stripslashes(get_option('tbtaa_target_id')));?></textarea><br>
-            			The id of _address_1 input from your form &lt;input type="text" id="<b>unique_address_1</b>" /> and enter them in above field as comma separated. e.g. field1, field2 etc.
+            			Enter comma separated ID(s) of your custom _address_1 input from your form &lt;input type="text" id="<b>unique_address_1</b>" />.
             		</td>
 				</tr>
 				<tr>
             		<th scope="row"><label for="tbtaa_target_class">Field Class(es)</label></th>
                     <td><textarea name="tbtaa_target_class" class="large-text code" id="tbtaa_target_class" ><?php echo str_replace('.', '',stripslashes(get_option('tbtaa_target_class')));?></textarea><br>
-                        The class of textbox from markup &lt;input type="text" class="<b>field1</b>" /> and enter them in above field as comma separated. e.g. field1, field2 etc.
+					Enter comma separated class(es) of your custom _address_1 input from your form &lt;input type="text" class="<b>unique_address_1</b>" />.
                     </td>
 				</tr>
                 <tr>
 	                <th scope="row"><label for="tbtaa_target_name">Field Name(s)</label></th>
                 	<td><textarea name="tbtaa_target_name" class="large-text code" id="tbtaa_target_name" ><?php echo str_replace(['[name="', '"]'], '',stripslashes(get_option('tbtaa_target_name')));?></textarea><br>
-                        The name of textbox from markup &lt;input type="text" name="<b>field1</b>" /> and enter them in above field as comma separated. e.g. field1, field2 etc.
+					Enter comma separated names of your custom _address_1 input from your form &lt;input type="text" name="<b>unique_address_1</b>" />.
                 	</td>
                 </tr>
             </table>
+			<div>
+				<h4>Enable Autocomplete</h4>
+				<input type="checkbox" id="tbtaa_autocomplete_is_enabled" name="tbtaa_autocomplete_is_enabled" value="tbtaa_autocomplete_is_enabled" <?php echo get_option('tbtaa_autocomplete_is_enabled') === '0' ? '' : 'checked' ?> >
+				<label for="tbtaa_autocomplete_is_enabled">Use autocomplete on available address fields</label>
+			</div>
 			<button id="tbtaa_submit_admin" class="button button-primary button-large" type="submit" name="tbtaa_settings" value="Save"/>Save Settings</button>
     	</form>
     </div>

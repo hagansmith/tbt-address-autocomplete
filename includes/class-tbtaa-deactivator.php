@@ -30,6 +30,7 @@ class Tbtaa_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
+		delete_option('tbtaa_autocomplete_is_enabled');
 		delete_option('tbtaa_use_in_woo');
 		delete_option('tbtaa_google_api_key');
 		delete_option('tbtaa_target_class');
